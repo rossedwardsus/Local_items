@@ -1,0 +1,24 @@
+items add
+<br>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<button id="btn">click</button>
+
+
+<script>
+
+	$("#btn").click(function(){
+		alert();
+		$.ajax({
+		    type: "POST",
+		    url: '/items/add',
+		     // yes, this variable is set successfully
+		    data: {first_name: "username", csrfmiddlewaretoken: "window.CSRF_TOKEN"},
+		    success: function(data){
+		        console.log( 'success, server says '+data);
+		    },
+		    headers: {"Authorization": "Token bffd204f6beaa5ee59927ac1d0073cc37cdd6a27"}
+		});
+	})
+
+</script>
