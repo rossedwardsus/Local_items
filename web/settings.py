@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.gis',
     'items',
+    'users',
     'corsheaders',
     'rest_framework.authtoken'
 ]
