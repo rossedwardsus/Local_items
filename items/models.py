@@ -1,4 +1,4 @@
-from django.db import models
+#from django.db import models
 
 # Create your models here.
 
@@ -9,7 +9,7 @@ import uuid
 import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.contrib.gis.db import models
 
 
 #class MyUser(AbstractUser):
@@ -17,7 +17,8 @@ from django.contrib.auth.models import AbstractUser
 #	 email = EmailField()
 #.   password hashed
 #	 date_registered = datetime.datetime.now()
-#    first name
+#    first_name = models.Charfield()
+#    last_name = models.Charfield()   
 #.   location
 
 
@@ -25,12 +26,12 @@ from django.contrib.auth.models import AbstractUser
 #import uuid
 #from django.db import models
 
-class Item(models.Model):
+class UserItem(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     description = models.TextField()
-#    location = models.PositiveIntegerField()
+    location = models.PointField()
     date_posted = datetime.datetime.now()
-    cost = models.FloatField()
+    cost = models.CharField(max_length=10) #giving away
     note = models.TextField()
 #		tags
 #		pickup location
