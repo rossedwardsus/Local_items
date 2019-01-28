@@ -13,6 +13,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from django.utils.decorators import method_decorator
 from rest_framework.authtoken.models import Token
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import FileUploadParser
 
 class ItemsViewSet(viewsets.ModelViewSet):
     """
@@ -31,6 +33,9 @@ class ItemsAddViewSet(views.APIView):
     #@classmethod
     #def get_extra_actions(cls):
     #    return []
+
+    renderer_classes = (JSONRenderer, )
+    parser_classes = (FileUploadParser,)
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -64,7 +69,11 @@ class ItemsAddViewSet(views.APIView):
         #token = Token.objects.create(user=user)
         #print(token.key)
 
-        return Response({'items': 'items'})
+        #request.user.auth_token.delete()
+
+        #file_obj = request.FILES['file']
+
+        return Response({'token': 'token.key'}, status=status.HTTP_200_OK)
     #    return Response({'items': 'items'}, status=status.HTTP_201_CREATED)
 
 

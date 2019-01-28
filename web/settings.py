@@ -146,6 +146,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#AUTH_USER_MODEL = 'myapp.MyUser'
+
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
