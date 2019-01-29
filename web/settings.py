@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_gis',
     'django.contrib.gis',
-    'items',
+    'user_items',
     'users',
     'corsheaders',
     'rest_framework.authtoken'
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['items'],
+        'DIRS': ['user_items', 'users'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

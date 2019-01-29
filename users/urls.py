@@ -9,6 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 #router.register(r'groups', views.GroupViewSet)
 #router.register(r'^add/$', views.ItemsViewSet)
 
+
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
@@ -16,5 +18,6 @@ urlpatterns = [
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     #url(r'', user_list, name='user-list'),
     url('', views.UsersViewSet.as_view({'get':'list'})),
+    url('', views.index),
     
 ]

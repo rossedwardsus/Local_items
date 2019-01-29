@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-#from .models import MyUser
+from .models import UserItem
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -10,11 +10,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         #encrypt password
 
 
-#class MyUserSerializer(serializers.HyperlinkedModelSerializer):
+#class UserSerializer(serializers.HyperlinkedModelSerializer):
 #    class Meta:
 #        model = MyUser
 #        fields = ('username', 'email')
-        #encrypt password
+         #encrypt password
 
 
 
@@ -25,14 +25,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 #check_password("incorrect", h1)  # returns False
 
 
-#class UserItemSerializer(serializers.Serializer):
-#    title = serializers.EmailField()
-#    date_posted = serializers.CharField(max_length=200)
-#    tags = serializers.DateTimeField()
+class UserItemSerializer(serializers.Serializer):
+    title = serializers.EmailField()
+    date_posted = serializers.CharField(max_length=200)
+    tags = serializers.DateTimeField()
 
-#    class Meta:
-#        model = UserItem
-#        fields = ('username', 'email')
+    class Meta:
+        model = UserItem
+        fields = ('username', 'email')
     
 
     #def create(self, validated_data):

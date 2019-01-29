@@ -16,7 +16,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import FileUploadParser
 
-class UsersViewSet(viewsets.ModelViewSet):
+class UserItemsViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
 
@@ -26,10 +26,42 @@ class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
+class UserItemsBrowseAll(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+
+    
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+class UserItemsNearMe(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+
+    
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+
+    
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+
+
 
 #@csrf_exempt
 #class ItemsAddViewSet(viewsets.ModelViewSet):
-class UsersNearbyViewSet(views.APIView):
+class UserItemAddDetails(views.APIView):
     #renderer_classes = [TemplateHTMLRenderer]
     #template_name = 'items_add.html'
 
@@ -50,7 +82,7 @@ class UsersNearbyViewSet(views.APIView):
     #@csrf_exempt
     #@method_decorator(csrf_exempt)
     #@action(detail=True, methods=['post'])
-    def post(self, request, format=None):
+    def post(self, request, format=None, username=None):
         #serializer = self.get_serializer(data=request.data)
 
         print("request " + str(request.user.id))
@@ -76,6 +108,11 @@ class UsersNearbyViewSet(views.APIView):
 
         #file_obj = request.FILES['file']
 
+        #upload and resize photos
+        #also notify users who are following tags
+        #pay for listing
+
+
         return Response({'token': 'token.key'}, status=status.HTTP_200_OK)
     #    return Response({'items': 'items'}, status=status.HTTP_201_CREATED)
 
@@ -84,8 +121,7 @@ class UsersNearbyViewSet(views.APIView):
     #serializer_class = UserSerializer
 
 
-
-class CreateUser(views.APIView):
+class UserItemAddPhoto(views.APIView):
     #renderer_classes = [TemplateHTMLRenderer]
     #template_name = 'items_add.html'
 
@@ -106,7 +142,7 @@ class CreateUser(views.APIView):
     #@csrf_exempt
     #@method_decorator(csrf_exempt)
     #@action(detail=True, methods=['post'])
-    def post(self, request, format=None):
+    def post(self, request, format=None, username=None):
         #serializer = self.get_serializer(data=request.data)
 
         print("request " + str(request.user.id))
@@ -132,16 +168,84 @@ class CreateUser(views.APIView):
 
         #file_obj = request.FILES['file']
 
+        #upload and resize photos
+        #also notify users who are following tags
+
+
+
         return Response({'token': 'token.key'}, status=status.HTTP_200_OK)
     #    return Response({'items': 'items'}, status=status.HTTP_201_CREATED)
 
 
     #queryset = User.objects.all().order_by('-date_joined')
     #serializer_class = UserSerializer
+
+
+#@csrf_exempt
+#class ItemsAddViewSet(viewsets.ModelViewSet):
+class UserItemResponse(views.APIView):
+    #renderer_classes = [TemplateHTMLRenderer]
+    #template_name = 'items_add.html'
+
+    #@classmethod
+    #def get_extra_actions(cls):
+    #    return []
+
+    renderer_classes = (JSONRenderer, )
+    parser_classes = (FileUploadParser,)
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    #@action(detail=True, methods=['get'])
+    #def get_template(self):
+    #    return Response({'items': 'items'})
+
+    #@csrf_exempt
+    #@method_decorator(csrf_exempt)
+    #@action(detail=True, methods=['post'])
+    def post(self, request, format=None, username=None):
+        #serializer = self.get_serializer(data=request.data)
+
+        print("request " + str(request.user.id))
+
+        #user = User.objects.create(
+        #    username="validated_data['username']11"
+        #)
+        #user.set_password("validated_data['password']")
+        #user.save()
+
+        #User.objects.create_user(
+        #    serialized.init_data['email'],
+        #    serialized.init_data['username'],
+        #    serialized.init_data['password']
+        #)
+
+        #bffd204f6beaa5ee59927ac1d0073cc37cdd6a27
+
+        #token = Token.objects.create(user=user)
+        #print(token.key)
+
+        #request.user.auth_token.delete()
+
+        #file_obj = request.FILES['file']
+
+        #upload and resize photos
+        #also notify users who are following tags
+        #pay for listing
+
+
+        return Response({'token': 'token.key'}, status=status.HTTP_200_OK)
+    #    return Response({'items': 'items'}, status=status.HTTP_201_CREATED)
+
+
+    #queryset = User.objects.all().order_by('-date_joined')
+    #serializer_class = UserSerializer
+
 
 
 
 def index(request):
     #latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': 'latest_question_list'}
-    return render(request, 'user_add.html', context)
+    return render(request, 'user_item_add.html', context)

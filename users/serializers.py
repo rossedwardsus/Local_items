@@ -1,28 +1,30 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.hashers import check_password, make_password
+#from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-#from .models import MyUser
+from .models import MyUser
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', 'email')
-        #encrypt password
-
-
-#class MyUserSerializer(serializers.HyperlinkedModelSerializer):
+#class UserSerializer(serializers.HyperlinkedModelSerializer):
 #    class Meta:
-#        model = MyUser
+#        model = User
 #        fields = ('username', 'email')
         #encrypt password
 
 
+class UserSerializer(serializers.Serializer):
+    class Meta:
+        model = MyUser
+#       fields = ('username', 'email')
 
-#from django.contrib.auth.hashers import check_password, make_password
-#password = "helloworld"
-#h1 = make_password(password)
-#check_password(password, h1)  # returns True
-#check_password("incorrect", h1)  # returns False
+    #def create(self, validated_data):
+    #   return Comment(**validated_data)
+        #encrypt password
+        #from django.contrib.auth.hashers import check_password, make_password
+        #password = "helloworld"
+        #h1 = make_password(validated_data(password))
+        #check_password(password, h1)  # returns True
+        #check_password("incorrect", h1)  # returns False
+        #return MyUser(email, hashed_password)
 
 
 #class UserItemSerializer(serializers.Serializer):
@@ -34,7 +36,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 #        model = UserItem
 #        fields = ('username', 'email')
     
-
     #def create(self, validated_data):
     #    return Comment(**validated_data)
 
