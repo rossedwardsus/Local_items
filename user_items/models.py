@@ -37,6 +37,9 @@ class UserItem(models.Model):
 #		tags
 #		pickup location
 
+	meta:
+		db_table: "user_items"
+
 #>>> eventobject = Event.objects.all()
 #>>> eventobject.first().id
 #'3cd2b4b0c36f43488a93b3bb72029f46'
@@ -45,6 +48,12 @@ class UserItem(models.Model):
 #class UserItemTags(AbstractUser):
 #    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 #	 tag = EmailField()
+#book
+#fitness
+#health
+#clothing
+#luggage
+#appliance
 
 
 #class UserItem(models.model)

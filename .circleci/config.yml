@@ -3,18 +3,21 @@ jobs:
   build:
     working_directory: ~/web
     docker:
-      - image: circleci/python:3.7
+      - image: circleci/python:3.6.1
     steps:
       - checkout  # checkout source code to working directory
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
       - run:
           command: |  # use pipenv to install dependencies
-            sudo pip install pipenv
-            pipenv install
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
       - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+        
