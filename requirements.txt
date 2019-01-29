@@ -1,0 +1,10 @@
+pyjwt
+psycopg2-binary
+pytz
+pillow
+boto3
+celery
+bcrypt
+django-cors-headers
+djangorestframework
+django
