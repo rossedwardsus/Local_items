@@ -7,4 +7,5 @@ celery
 bcrypt
 django-cors-headers
 djangorestframework
+djangorestframework-gis
 django
